@@ -1,0 +1,39 @@
+<h2>Agreement</h2>
+<div class="col-sm-5" ng-init="getFileNameAgreement()">
+    <form name="agreement">
+        <h5>Platform Agreement: </h5>
+        <label class="btn btn-default">
+            <input class="hide" type="file" ngf-select ng-model="agreementFile" name="agreementFile" ngf-pattern="'.doc,.docx,.txt,.pdf'"
+                accept=".doc,.docx,.txt,.pdf" ngf-max-size="10MB" /> Browse File
+        </label>
+        <a ng-show="getNameAgreement" href="/uploads/{{getNameAgreement}}" target="_blank"><img src="/images/download.png" width="25"></a>
+        <br>
+        <span style="color:red">Supported format : doc, docx, txt, pdf</span>
+       
+        <p class="alert alert-info margin-top-10" ng-show="agreement.agreementFile.$error.required">*required</p>
+        <p class="alert alert-info margin-top-10" ng-show="agreement.agreementFile.$error.maxSize">File too large {{file.size / 1000000|number:1}}MB: max 10M</p>
+        <div class="clearfix"></div>
+        <button ng-disabled="agreement.agreementFile.$error.required || agreement.agreementFile.$error.maxSize" class="btn btn-success margin-top-10"
+            type="submit" ng-click="platformAgreement()">Save Platform Agreement</button>
+        <p ng-show="agreementFile">{{progress}}</p>
+    </form>
+</div>
+<div class="col-sm-5">
+    <form name="service">
+        <h5>Service Agreement: </h5>
+        <label class="btn btn-default">
+            <input class="hide" type="file" ngf-select ng-model="serviceFile" name="serviceFile" ngf-pattern="'.doc,.docx,.pdf,.txt'"
+                accept=".doc,.docx,.txt,.pdf" ngf-max-size="10MB" /> Browse File
+        </label>
+        <a ng-show="getNameService" href="/uploads/{{getNameService}}" target="_blank"><img src="/images/download.png" width="25"></a>
+        <br>
+        <span style="color:red">Supported format : doc, docx, txt, pdf</span>
+        
+        <p class="alert alert-info margin-top-10" ng-show="service.serviceFile.$error.required">*required</p>
+        <p class="alert alert-info margin-top-10" ng-show="service.serviceFile.$error.maxSize">File too large {{file.size / 1000000|number:1}}MB: max 10M</p>
+        <div class="clearfix"></div>
+        <button class="btn btn-success margin-top-10" ng-disabled="service.serviceFile.$error.required || service.serviceFile.$error.maxSize"
+            type="submit" ng-click="serviceAgreement()">Save Service Agreement</button>
+        <p ng-show="serviceFile">{{progress}}</p>
+    </form>
+</div>

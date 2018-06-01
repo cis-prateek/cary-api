@@ -1,0 +1,27 @@
+<h2>
+  <span ng-bind='isEdit() ? "Edit" : "Add New"'></span> Admin</h2>
+<form name="imageForm" class="col-md-4">
+  <div class="form-group">
+    <h3>Name</h3>
+    <input name="name" type="text" class="form-control" placeholder="Name" ng-model="formData.name" required value="">
+    <span class="text-danger" ng-show="(imageForm.name.$error.required && imageForm.name.$dirty)">Name required *</span>
+  </div>
+  <div class="form-group">
+    <h3>Phone Number</h3>
+    <input name="phonenumber" type="text" class="form-control" placeholder="0123456789" ng-model="formData.phonenumber" required value="">
+    <span class="text-danger" ng-show="(imageForm.phonenumber.$error.required && imageForm.phonenumber.$dirty)">Phone Number required *</span>
+  </div>
+  <div class="form-group">
+    <h3>Email</h3>
+    <input name="email" type="email" class="form-control" placeholder="email" ng-model="formData.email" required value="">
+    <span class="text-danger" ng-show="(imageForm.email.$error.required && imageForm.email.$dirty)">Email required *</span>
+  </div>
+  <div class="form-group">
+    <h3>Password</h3>
+    <input name="password" type="text" class="form-control" placeholder="password" ng-model="formData.password" required value="">
+    <span class="text-danger" ng-show="(imageForm.password.$error.required && imageForm.password.$dirty)">Password required *</span>
+  </div>
+
+  <button type="submit" ng-click="saveAdminUser()" ng-disabled="imageForm.$invalid" class="btn btn-primary">Submit</button>
+  <button type="submit" ui-sref="admin.admin-users" class="btn btn-primary">Back</button>
+</form>

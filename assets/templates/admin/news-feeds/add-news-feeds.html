@@ -1,0 +1,32 @@
+<h2 ng-init="getNewsFeed()" ng-bind='isEdit() ? "Edit News Feed" : "Add News Feed"'></h2>
+<div class="col-md-offset-2 col-md-8">
+  <form ng-app="fileUpload" ng-submit="addNewsFeeds()" name="formData" novalidate>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Title</label>
+      <input name="title" type="select" class="form-control" ng-model="newsFeedTitle" placeholder="Title" ng-model="title" required>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Description</label>
+      <!-- <input name="description" type="text" class="form-control" ng-model="newsFeedDescription" placeholder="Description" ng-model="description"> -->
+      <textarea name="description" type="text" class="form-control" ng-model="newsFeedDescription" rows="5" placeholder="Description"
+        ng-model="description">{{description}}</textarea>
+    </div>
+    <div class="form-group">
+      <div ng-show="ImageSrc" class="category-img">
+        <img width="150" height="150" ng-src="{{ImageSrc}}" style="margin-bottom: 10px;" />
+      </div>
+      <label class="btn btn-default">
+        Browse
+        <i class="fa fa-paperclip" aria-hidden="true"></i>
+        <input name="file" type="file" ngf-select class="hide" ng-model="image" ngf-multiple="false" ng-file-select="onFileSelect($files)"
+          required ngf-pattern="'.png,.jpeg'" accept=".png,.jpeg" />
+      </label>
+
+      <br>
+      <span style="color:red">Supported format : png, jpeg</span>
+    </div>
+    <div class="form-group">
+      <button ng-disabled="disableSave" type="submit" class="btn btn-primary">Save</button>
+    </div>
+  </form>
+</div>

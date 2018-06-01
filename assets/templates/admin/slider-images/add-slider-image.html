@@ -1,0 +1,28 @@
+<h2>Slider Image</h2>
+<div class="col-md-offset-2 col-md-8">
+  <form ng-app="fileUpload" ng-submit="uploadSliderImages()" name="formData" novalidate>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Title</label>
+      <input name="title" type="select" class="form-control" placeholder="title" ng-model="title" required>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Description</label>
+      <!-- <input name="description" type="text" class="form-control" placeholder="Description" ng-model="description"> -->
+      <textarea name="description" type="text" class="form-control" placeholder="Description" ng-model="description" rows="5">{{description}}</textarea>
+    </div>
+    <div class="form-group">
+      <label for="file">Image</label>
+      <label class="btn btn-default clearfix">
+        Browse
+        <input type="file" name="file" accept="image/*" class="hide" ngf-select ng-model="files" ngf-multiple="false" required ngf-pattern="'.png,.jpeg'"
+          accept=".png,.jpeg" />
+      </label>
+      <br>
+      <span style="color:red">Supported format : png, jpeg</span>
+    </div>
+    <div ng-show="errorMessage" class="alert alert-warning">{{errorMessage}}</div>
+    <div class="form-group">
+      <button type="submit" ng-disabled="disableSave" class="btn btn-primary">Save</button>
+    </div>
+  </form>
+</div>
