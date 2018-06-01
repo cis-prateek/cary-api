@@ -32,7 +32,7 @@ passport
           if (err) { return done(err); }
           if (!user) {
             return done(null, null, {
-              message: 'Incorrect phoneNumber.'
+              message: 'Incorrect phone number.'
             });
           } else {
             __checkPassword(password, user, done);
@@ -45,7 +45,7 @@ passport
           if (err) { return done(err); }
           if (!user) {
             return done(null, null, {
-              message: 'Incorrect phoneNumber.'
+              message: 'Incorrect phone number.'
             });
           } else {
             __checkPassword(password, user, done);
@@ -55,7 +55,7 @@ passport
     }
     catch (e) {
       return done(null, null, {
-        message: 'Incorrect phoneNumber.'
+        message: 'Incorrect phone number.'
       });
     }
   }
@@ -66,18 +66,18 @@ const __checkPassword = (password, user, done) => {
     bcrypt.compare(password, user.password, (err, res) => {
       if (!res) {
         return done(null, null, {
-          message: 'Invalid Password'
+          message: 'Invalid Password.'
         });
       }
 
       return done(null, user, {
-        message: 'Logged In Successfully'
+        message: 'Logged In Successfully.'
       });
     });
   }
   catch (e) {
     return done(null, null, {
-      message: 'Invalid Password'
+      message: 'Invalid Password.'
     });
   }
 };

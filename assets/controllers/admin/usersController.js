@@ -4,7 +4,9 @@ app
     '$scope',
     'httpService',
     'notificationService',
-    (scope, httpService, notificationService) => {
+    '$state',
+    '$rootScope',
+    (scope, httpService, notificationService,$state,$rootScope) => {
 
       scope.tab = 1;
       scope.setTab = (tabId) => {
@@ -21,7 +23,7 @@ app
         httpService.getData('/api/users')
           .success((response, status, headers, config) => {
             if (response.result) {
-              scope.allUsers = response.data;
+              scope.allUsers = [];
               scope.allProviderUsers = _.filter(scope.allUsers, (o) => o.isProvider === true);
               scope.allSeekerUsers = _.filter(scope.allUsers, (o) => o.isProvider !== true);
               scope.setDatatable('provider');
@@ -43,6 +45,12 @@ app
             });
           });
         }, 0);
+      };
+      scope.showDetails = (user) => {
+        $rootScope.userData = user;
+        $state.go('admin.users-details', {
+          id: user.id
+        });
       };
 
     }

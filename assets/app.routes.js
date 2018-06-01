@@ -4,7 +4,7 @@ app
   .config(config)
   .run(checkURLAccess);
 
-function config($stateProvider, $urlRouterProvider, $locationProvider) {
+function config ($stateProvider, $urlRouterProvider, $locationProvider) {
   // $locationProvider.html5Mode({
   //     enabled: true,
   //     requireBase: false
@@ -53,6 +53,14 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('admin.users', {
       url: '/users',
       templateUrl: './templates/admin/users/users-list.html',
+      controller: 'usersCtrl',
+      data: {
+        requireLogin: true
+      }
+    })
+    .state('admin.users-details', {
+      url: '/users/:id/details',
+      templateUrl: './templates/admin/users/users-details.html',
       controller: 'usersCtrl',
       data: {
         requireLogin: true
@@ -147,7 +155,7 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
   $urlRouterProvider.otherwise('login');
 };
 
-function checkURLAccess(Auth, $rootScope, $location, $localStorage, $state) {
+function checkURLAccess (Auth, $rootScope, $location, $localStorage, $state) {
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
     const { requireLogin } = toState.data;
     if (requireLogin && typeof $localStorage.user === 'undefined' && !$localStorage.user) {

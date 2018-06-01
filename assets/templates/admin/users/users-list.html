@@ -26,6 +26,7 @@
                     <th class="text-center"> Email</th>
                     <th class="text-center"> Type</th>
                     <th class="text-center"> Join on</th>
+                    <th class="text-center"> Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,6 +37,7 @@
                     <td class="text-center">{{user.userProfile[0].email || "NA"}}</td>
                     <td class="text-center">{{user.isProvider ? 'Provider' : 'Seeker'}}</td>
                     <td class="text-center">{{user.createdAt | date: medium}}</td>
+                    <td class="text-center"><a href ng-click="showDetails(user)">Details</a></td>
                 </tr>
             </tbody>
         </table>
@@ -50,6 +52,7 @@
                     <th class="text-center"> Email</th>
                     <th class="text-center"> Type</th>
                     <th class="text-center"> Join on</th>
+                    <th class="text-center"> Action</th>
                 </tr>
             </thead>
             <tbody >
@@ -60,6 +63,7 @@
                     <td class="text-center">{{user.userProfile[0].email || "NA"}}</td>
                     <td class="text-center">{{user.isProvider ? 'Provider' : 'Seeker'}}</td>
                     <td class="text-center">{{user.createdAt | date: medium}}</td>
+                    <td class="text-center"><a href ng-click="showDetails(user)">Details</a></td>
                 </tr>
             </tbody>
         </table>

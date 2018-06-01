@@ -36,7 +36,7 @@ module.exports = {
         if (err) res.send({
           result: 0,
           error: err,
-          message: 'Invalid Credentials'
+          message: 'Invalid Credentials.'
         });
         req.session.user = user;
 
@@ -63,7 +63,7 @@ module.exports = {
           res.send({
             result: 0,
             error: err,
-            message: 'Invalid Credentials'
+            message: 'Invalid Credentials.'
           });
         } else if (user.type == 'admin') {
           req.session.admin = user;
@@ -77,7 +77,7 @@ module.exports = {
         } else {
           return res.send({
             result: 0,
-            message: 'Unauthorize access'
+            message: 'Unauthorize access.'
           });
         }
       });
@@ -122,7 +122,7 @@ module.exports = {
       if (!user) {
         return res.status(201).json({
           result: 0,
-          message: 'Phone Number not exist in our database.'
+          message: 'Phone Number doesn\'t exist.'
         });
       }
 
@@ -158,7 +158,7 @@ module.exports = {
     catch (e) {
       return res.status(503).json({
         result: 0,
-        message: 'Server Error'
+        message: 'Server Error.'
       });
     }
 
@@ -196,7 +196,7 @@ module.exports = {
               } else {
                 return res.status(201).json({
                   result: 1,
-                  message: 'updated successfully'
+                  message: 'Updated successfully.'
                 });
               }
             });
@@ -208,7 +208,7 @@ module.exports = {
     catch (e) {
       return res.status(503).json({
         result: 0,
-        message: 'Server Error'
+        message: 'Server Error.'
       });
     }
   },
@@ -235,7 +235,7 @@ module.exports = {
     catch (e) {
       return res.status(503).json({
         result: 0,
-        message: 'Server Error'
+        message: 'Server Error.'
       });
     }
   },
@@ -265,7 +265,7 @@ module.exports = {
               } else {
                 return res.status(201).json({
                   result: 1,
-                  message: 'updated successfully'
+                  message: 'Updated successfully.'
                 });
               }
             });
@@ -330,7 +330,7 @@ module.exports = {
     catch (e) {
       return res.status(503).json({
         result: 0,
-        message: 'Server Error'
+        message: 'Server Error.'
       });
     }
 

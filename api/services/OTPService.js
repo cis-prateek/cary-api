@@ -5,7 +5,7 @@ exports.generateOTP = async (req, res) => {
     if (!phoneNumber) {
       return res.status(201).json({
         result: 0,
-        message: 'phoneNumber required'
+        message: 'Phone Number required.'
       });
     }
     const user = await User.findOne({
@@ -30,7 +30,7 @@ exports.generateOTP = async (req, res) => {
   // @TODO write code to send the otp to the phone number.
   res.status(200).json({
     result: 1,
-    message: `OTP successfully generated and send to ${phoneNumber} Phone Number.`
+    message: `OTP successfully generated and send to the following Number ${phoneNumber}`
   });
 };
 
@@ -41,7 +41,7 @@ exports.generateForgotPasswordOTP = async (req, res) => {
     if (!phoneNumber) {
       return res.status(201).json({
         result: 0,
-        message: 'phoneNumber required'
+        message: 'Phone Number required.'
       });
     }
 
@@ -52,7 +52,7 @@ exports.generateForgotPasswordOTP = async (req, res) => {
     if(!user) {
       return res.status(201).json({
         result: 0,
-        message: 'Phone number doesn\'t exists'
+        message: 'Phone number doesn\'t exists.'
       });
     }
 
@@ -69,7 +69,7 @@ exports.generateForgotPasswordOTP = async (req, res) => {
 
   res.status(200).json({
     result: 1,
-    message: `OTP successfully generated and send to ${phoneNumber} Phone Number.`
+    message: `OTP successfully generated and send to the following Phone Number ${phoneNumber}`
   });
 };
 const __createOTP = async (response, phoneNumber, type) =>{

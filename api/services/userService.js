@@ -65,7 +65,7 @@ exports.signup = async (req, res) => {
     if (!OTPInfo) {
       return res.status(201).json({
         result: 0,
-        message: 'Invailid OTP Number.'
+        message: 'Invalid OTP Number.'
       });
     }
 
@@ -142,7 +142,7 @@ exports.uploadAvatar = (req, res) => {
       if (uploadedFiles.length === 0) {
         return res.status(201).json({
           result: 0,
-          message: 'No file was uploaded'
+          message: 'No file was uploaded.'
         });
       }
 
@@ -171,7 +171,7 @@ exports.uploadAvatar = (req, res) => {
 
             return res.status(200).send({
               result: 1,
-              message: 'Successfully Uploaded',
+              message: 'Successfully Uploaded.',
               data: {
                 avatarUrl: result.url || ''
               }
