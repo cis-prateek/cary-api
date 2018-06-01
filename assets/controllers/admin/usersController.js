@@ -19,16 +19,19 @@ app
       };
 
       scope.allUsers = [];
+      scope.allProviderUsers = [];
+      scope.allSeekerUsers = [];
       scope.getAllUsersList = function () {
         httpService.getData('/api/users')
           .success((response, status, headers, config) => {
             console.log('---response---', response);
             if (response.result) {
-              scope.allUsers = [];
+              scope.allUsers = response.data;
+              console.log('---scope.allUsers---', scope.allUsers);
               scope.allProviderUsers = _.filter(scope.allUsers, (o) => o.isProvider === true);
               scope.allSeekerUsers = _.filter(scope.allUsers, (o) => o.isProvider !== true);
-              console.log('---response---', allProviderUsers);
-              console.log('---response---', allSeekerUsers);
+              console.log('---response-allProviderUsers--', scope.allProviderUsers);
+              console.log('---response-allSeekerUsers--', scope.allSeekerUsers);
               scope.setDatatable('provider');
             } else {
               scope.allUsers = [];
