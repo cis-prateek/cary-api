@@ -22,10 +22,13 @@ app
       scope.getAllUsersList = function () {
         httpService.getData('/api/users')
           .success((response, status, headers, config) => {
+            console.log('---response---', response);
             if (response.result) {
               scope.allUsers = [];
               scope.allProviderUsers = _.filter(scope.allUsers, (o) => o.isProvider === true);
               scope.allSeekerUsers = _.filter(scope.allUsers, (o) => o.isProvider !== true);
+              console.log('---response---', allProviderUsers);
+              console.log('---response---', allSeekerUsers);
               scope.setDatatable('provider');
             } else {
               scope.allUsers = [];
@@ -35,6 +38,7 @@ app
             notificationService.error('Unable to get the user informations');
           });
       };
+
       scope.getAllUsersList();
       scope.setDatatable = (type) => {
         setTimeout(() => {
@@ -46,8 +50,9 @@ app
           });
         }, 0);
       };
+
       scope.showDetails = (user) => {
-        $rootScope.userData = user;
+        $rootScope.userDetailsData = user;
         $state.go('admin.users-details', {
           id: user.id
         });
