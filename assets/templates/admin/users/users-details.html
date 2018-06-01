@@ -8,59 +8,59 @@
   <div class="container-fluid well span6">
     <div class="row-fluid">
       <div class="span2">
-        <img src={{userDetailsData.userProfile[0].avatarUrl}} class="img-circle">
+        <img style="width:200px; margin:0 20px;" src={{userDetailsData.userProfile[0].avatarUrl}} class="img-circle">
       </div>
 
       <table class="table table-user-information">
         <tbody>
-          <tr>
+          <!-- <tr>
             <td>Nick Name:</td>
             <td> {{userDetailsData.userProfile[0].nick_name}}</td>
-          </tr>
+          </tr> -->
           <tr>
-            <td>Email: </td>
+            <td><b>Email:</b></td>
             <td>{{userDetailsData.userProfile[0].email}}</td>
           </tr>
           <tr>
-            <td>Address:</td>
+            <td><b>Address:</b></td>
             <td>{{userDetailsData.userProfile[0].address}}</td>
           </tr>
 
           <tr>
             <tr>
-              <td>City:</td>
+              <td><b>City:</b></td>
               <td>{{userDetailsData.userProfile[0].city}}</td>
             </tr>
             <tr>
-              <td>Country:</td>
+              <td><b>Country:</b></td>
               <td>{{userDetailsData.userProfile[0].country}}</td>
             </tr>
             <tr>
-              <td>Contact Number:</td>
+              <td> <b>Contact Number:</b></td>
               <td>{{userDetailsData.userProfile[0].phoneNumber}}</td>
             </tr>
             <tr>
-              <td>Paypal account:</td>
+              <td><b>Paypal account:</b></td>
               <td>{{userDetailsData.userProfile[0].paypal_account}}
               </td>
             </tr>
             <tr>
-              <td>Type:</td>
+              <td><b>Type:</b></td>
               <td>{{userDetailsData.isProvider ? 'Provider' : 'Seeker'}}
               </td>
             </tr>
             <tr>
-              <td>created At:</td>
+              <td><b>Created At:</b></td>
               <td>{{userDetailsData.createdAt}}
               </td>
             </tr>
             <tr>
-              <td>Updated At:</td>
+              <td><b>Updated At:</b></td>
               <td>{{userDetailsData.updatedAt}}
               </td>
             </tr>
             <tr>
-              <td>Description:</td>
+              <td><b>Description:</b></td>
               <td>{{userDetailsData.userProfile[0].desc}}
               </td>
             </tr>
