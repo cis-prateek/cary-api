@@ -12,7 +12,15 @@ module.exports = {
       type: 'string',
       required: true
     },
+    title_ch: {
+      type: 'string',
+      required: true
+    },
     description: {
+      type: 'text',
+      required: true
+    },
+    description_ch: {
       type: 'text',
       required: true
     },

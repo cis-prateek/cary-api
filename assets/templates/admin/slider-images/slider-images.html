@@ -1,6 +1,10 @@
-<a ui-sref="admin.add-slider-image" class="btn btn-link pull-right margin-top-10">Add New Slider</a>
+<a ui-sref="admin.add-slider-image" class="btn btn-link pull-right margin-top-10">
+    <span translate="Add_New_Slider"></span>
+</a>
 <div class="margin-top-10 clearfix">
-    <h3>Slider List</h3>
+    <h3>
+        <span translate="Slider_List"></span>
+    </h3>
 </div>
 <div class="images-container margin-top-10">
     <div ng-repeat="image in allSliderImages" class="col-sm-3 margin-top-10">
@@ -14,8 +18,8 @@
                         <br> {{image.description}}</span> -->
                 </div>
                 <span class="imageSliderDescription">
-                    <b>{{image.title}}</b>
-                    <br> {{image.description}}</span>
+                    <b>{{ image['title' + langSyntax]}}</b>
+                    <br> {{ image['description' + langSyntax]}}</span>
             </div>
         </div>
     </div>

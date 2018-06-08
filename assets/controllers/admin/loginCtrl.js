@@ -8,6 +8,18 @@ app
     Auth,
     notificationService
   ) => {
+
+    var lang = {
+      'en': {
+        INVALID_CREDENTIAL: 'Invalid Credentials, Please try again.',
+        EMAIL_SENT: 'Email sent successfully.'
+      },
+      'ch': {
+        INVALID_CREDENTIAL: '凭证无效，请重试。',
+        EMAIL_SENT: '电子邮件发送成功'
+      }
+    };
+
     $scope.isError = null;
     $scope.login = () => {
       httpService.postData('/api/admin', $scope.admin)
@@ -16,13 +28,13 @@ app
             Auth.setUser(response.data);
             $state.go('admin');
           } else {
-            notificationService.error('Invalid Credentials, Please try again.');
+            notificationService.error(lang[scope.selectedLang].INVALID_CREDENTIAL);
             // $scope.isError = 'Invalid Credentials, Please try again.';
             localStorage.removeItem('user');
           }
         })
         .error(function (error, status, headers, config) {
-          notificationService.error('Invalid Credentials, Please try again.');
+          notificationService.error(lang[scope.selectedLang].INVALID_CREDENTIAL);
         });
     };
 
@@ -36,14 +48,14 @@ app
       })
         .success(function (response, status, headers, config) {
           if (response.result === 1) {
-            notificationService.success('Email sent successfully.');
+            notificationService.success(lang[scope.selectedLang].EMAIL_SENT);
           } else {
-            notificationService.error('Invalid Credentials, Please try again.');
+            notificationService.error(lang[scope.selectedLang].INVALID_CREDENTIAL);
           }
           $scope.email = '';
         })
         .error(function (error, status, headers, config) {
-          notificationService.error('Invalid Credentials, Please try again.');
+          notificationService.error(lang[scope.selectedLang].INVALID_CREDENTIAL);
           $scope.email = '';
         });
     };

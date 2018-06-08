@@ -17,6 +17,18 @@ app.controller('uploadDocsController', [
     $http,
     notificationService,
     httpService) {
+
+    var lang = {
+      'en': {
+        UNABLE_TO_DOWNLOAD: 'Unable to download the file',
+        ERROR: 'Something went wrong'
+      },
+      'ch': {
+        UNABLE_TO_DOWNLOAD: '无法下载该文件',
+        ERROR: '出了些问题'
+      }
+    };
+
     $scope.type = 'none';
     $scope.platformAgreement = function () { //function to call on form submit
       if ($scope.agreement.agreementFile.$valid && $scope.agreementFile) {
@@ -67,11 +79,11 @@ app.controller('uploadDocsController', [
           // $window.alert(resp.data.message);
           notificationService.success(resp.data.message);
         } else {
-          notificationService.error('an error occured');
+          notificationService.error(lang[scope.selectedLang].ERROR);
           // $window.alert('an error occured');
         }
       }, function (resp) { //catch error
-        notificationService.error('Error occured');
+        notificationService.error(lang[scope.selectedLang].ERROR);
         // $window.alert('Error status: ' + resp.status);
       }, function (evt) {
         console.log(evt);
@@ -94,7 +106,7 @@ app.controller('uploadDocsController', [
         var fileURL = URL.createObjectURL(file);
         window.open(fileURL);
       }).error(function (data, status, headers, config) {
-        notificationService.error('Unable to download the file');
+        notificationService.error(lang[scope.selectedLang].UNABLE_TO_DOWNLOAD);
         // console.log('Unable to download the file');
       });
     };

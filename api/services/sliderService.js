@@ -33,7 +33,9 @@ exports.saveSliderImages = async (req, res) => {
               cloudId: result.public_id,
               url: result.url,
               title: req.body.title,
-              description: req.body.description
+              description: req.body.description,
+              title_ch: req.body.title_ch,
+              description_ch: req.body.description_ch
             });
           }
           callback();

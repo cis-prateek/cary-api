@@ -6,7 +6,8 @@ var app = angular
     'ngCookies',
     'ngFileUpload',
     'ngAnimate',
-    'toaster'
+    'toaster',
+    'pascalprecht.translate'
   ])
   .run((httpService, Auth) => {
     httpService.getData('/api/me')
@@ -15,7 +16,7 @@ var app = angular
           /(recoverpassword|password-recovery)/.test(window.location.hash) ? '' : Auth.logout();
         }
       })
-      .error(function (error, status, headers, config) {
+      .error(function(error, status, headers, config) {
         console.log('error - init', error);
       });
   });

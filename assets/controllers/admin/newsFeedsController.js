@@ -17,6 +17,24 @@ app.controller('newsFeedsController', [
     stateParams,
     notificationService,
   ) => {
+
+    var lang = {
+      'en': {
+        UNABLE_TO_CONNECT: 'Unable to connect with the server while get the news feeds informations.',
+        ERROR: 'Something went wrong',
+        NEWS_FEED_SAVE: 'News feed saved sucessfully.',
+        UNABLE_TO_SAVE_NEWS_FEED: 'Unable to add new news feed. Please try again.',
+        NEWS_DELETED: 'News has been deleted.'
+      },
+      'ch': {
+        UNABLE_TO_CONNECT: '无法在获取新闻提要信息时与服务器连接。',
+        ERROR: '出了些问题',
+        NEWS_FEED_SAVE: '新闻源成功保存。',
+        UNABLE_TO_SAVE_NEWS_FEED: '无法添加新的新闻提要。请再试一次。',
+        NEWS_DELETED: '新闻已被删除。'
+      }
+    };
+
     scope.init = () => {
       scope.getList();
     };
@@ -28,12 +46,14 @@ app.controller('newsFeedsController', [
         httpService.getData('/api/newsfeed/' + stateParams.id)
           .success(function (response, status, headers, config) {
             scope.newsFeedTitle = response.data.title;
+            scope.newsFeedTitle_ch = response.data.title_ch;
             scope.newsFeedDescription = response.data.description;
+            scope.newsFeedDescription_ch = response.data.description_ch;
             scope.ImageSrcOld = response.data.image;
             scope.ImageSrc = scope.ImageSrcOld;
           })
           .error(function (error, status, headers, config) {
-            notificationService.error('Unable to connect with the server while get the news feeds informations.');
+            notificationService.error(lang[scope.selectedLang].UNABLE_TO_CONNECT);
           });
       }
     };
@@ -46,10 +66,16 @@ app.controller('newsFeedsController', [
           scope.newsFeeds = response.data;
         })
         .error(function (error, status, headers, config) {
-          notificationService.error('Unable to connect with the server while get the news feeds informations.');
+          notificationService.error(lang[scope.selectedLang].UNABLE_TO_CONNECT);
         });
     };
     scope.disableSave = false;
+    scope.titleError = false;
+    scope.titleError_ch = false;
+    scope.descError = false;
+    scope.descError_ch = false;
+
+    scope.imageError = false;
     // upload later on form submit or something similar
     scope.addNewsFeeds = () => {
       if (stateParams.id) {
@@ -59,7 +85,9 @@ app.controller('newsFeedsController', [
           // no new image upload
           const data = {
             title: scope.formData.title.$viewValue,
+            title_ch: scope.formData.title_ch.$viewValue,
             description: scope.formData.description.$viewValue,
+            description_ch: scope.formData.description_ch.$viewValue,
             id: stateParams.id,
             editFile: false
           };
@@ -67,7 +95,9 @@ app.controller('newsFeedsController', [
         } else {
           const data = {
             title: scope.formData.title.$viewValue,
+            title_ch: scope.formData.title_ch.$viewValue,
             description: scope.formData.description.$viewValue,
+            description_ch: scope.formData.description_ch.$viewValue,
             image: scope.formData.file.$viewValue,
             id: stateParams.id,
             editFile: true
@@ -86,7 +116,21 @@ app.controller('newsFeedsController', [
           };
           scope.upload(data, '/api/newsfeed');
         } else {
-          notificationService.error('All fields required.');
+          if(!scope.formData.title.$viewValue){
+            scope.titleError = true;
+          }
+          if(!scope.formData.description.$viewValue){
+            scope.descError = true;
+          }
+          if(!scope.formData.title_ch.$viewValue){
+            scope.titleError_ch = true;
+          }
+          if(!scope.formData.description_ch.$viewValue){
+            scope.descError_ch = true;
+          }
+          if(!scope.formData.file.$viewValue){
+            scope.imageError = true;
+          }
         }
       }
     };
@@ -98,12 +142,12 @@ app.controller('newsFeedsController', [
         url: url,
         data: data
       }).then((resp) => {
-        notificationService.success('News feed saved sucessfully.');
+        notificationService.success(lang[scope.selectedLang].NEWS_FEED_SAVE);
         state.go('admin.news-feeds');
         scope.disableSave = false;
         // console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
       }, (resp) => {
-        notificationService.error('Unable to add new news feed. Please try again.');
+        notificationService.error(lang[scope.selectedLang].UNABLE_TO_SAVE_NEWS_FEED);
         scope.disableSave = false;
       }, (evt) => {
 
@@ -116,16 +160,37 @@ app.controller('newsFeedsController', [
         ///api/newsfeeds/:id
         httpService.deleteData(`/api/newsfeeds/${news.id}`)
           .success((response) => {
-            notificationService.success('News has been deleted.');
+            notificationService.success(lang[scope.selectedLang].NEWS_DELETED);
             scope.getList();
           })
           .error((error) => {
-            notificationService.error('Something went wrong');
+            notificationService.error(lang[scope.selectedLang].ERROR);
           });
         scope.getList();
       }
     };
 
+    scope.updateField = function (field){
+      switch(field) {
+      case 'title':
+        scope.titleError = false;
+        break;
+      case 'title_ch':
+        scope.titleError_ch = false;
+        break;
+      case 'desc':
+        scope.descError = false;
+        break;
+      case 'desc_ch':
+        scope.descError_ch = false;
+        break;
+      case 'img':
+        scope.imageError = false;
+        break;
+      default:
+        break;
+      }
+    };
     // scope.allSliderImages = [];
     // scope.getSliderImages = () => {
     //   httpService.getData('/api/sliderimages')

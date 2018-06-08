@@ -1,12 +1,12 @@
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
     <div class="col-md-12 navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
+            <span class="sr-only"><span translate="Toggle_navigation"></span></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" ui-sref="admin">CTO Admin</a>
+        <a class="navbar-brand" ui-sref="admin"><span translate="CTO_Admin"></span></a>
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
@@ -16,7 +16,7 @@
                 <ul class="dropdown-menu dropdown-user">
                     <li>
                         <a ui-sref="admin.change-password">
-                            <i class="fa fa-user fa-fw"></i> My Profile </a>
+                            <i class="fa fa-user fa-fw"></i><span translate="My_Profile"></span></a>
                     </li>
                     <!-- <li>
                         <a ui-sref="admin.change-password">
@@ -24,7 +24,24 @@
                     </li> -->
                     <li>
                         <a href="javascript:void(0)" ng-click="logout()">
-                            <i class="fa fa-sign-out fa-fw"></i> Logout </a>
+                            <i class="fa fa-sign-out fa-fw"></i> <span translate="Logout"></span></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav navbar-top-links navbar-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                    <span translate="Language"></span>({{selectedLang}})
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li ng-click="changeLanguage('en')">
+                        <a href="javascript:void(0)">
+                        English
+                    <li ng-click="changeLanguage('ch')">
+                        <a href="javascript:void(0)">
+                            中文 </a>
                     </li>
                 </ul>
             </li>
@@ -36,32 +53,32 @@
         <ul class="nav" id="side-menu">
             <li>
                 <a ui-sref="admin">
-                    <i class="fa fa-dashboard fa-fw"></i> Dashboard </a>
+                    <i class="fa fa-dashboard fa-fw"></i> <span translate="Dashboard"></span> </a>
             </li>
             <li>
                 <a ui-sref="admin.admin-users">
-                    <i class="fa fa-users fa-fw"></i> Admin Users </a>
+                    <i class="fa fa-users fa-fw"></i> <span translate="Admin_Users"></span></a>
             </li>
             <li>
                 <a ui-sref="admin.users">
-                    <i class="fa fa-users fa-fw"></i> Users </a>
+                    <i class="fa fa-users fa-fw"></i> <span translate="Users"></span></a>
             </li>
             <li>
                 <a ui-sref="admin.category">
-                    <i class="fa fa-tasks"></i> Categories </a>
+                    <i class="fa fa-tasks"></i> <span translate="Categories"></span></a>
             </li>
             <li>
                 <a ui-sref="admin.slider-images">
-                    <i class="fa fa-picture-o"></i> Slider Images </a>
+                    <i class="fa fa-picture-o"></i><span translate="Slider_Images"></span></a>
             </li>
             <li>
                 <a ui-sref="admin.agreement-policy">
-                    <i class="fa fa-wpforms" aria-hidden="true"></i> Agreement &amp; Policy </a>
+                    <i class="fa fa-wpforms" aria-hidden="true"></i><span translate="Agreement_policy"></span></a>
             </li>
 
             <li>
                 <a ui-sref="admin.news-feeds">
-                    <i class="fa fa-wpforms" aria-hidden="true"></i> News </a>
+                    <i class="fa fa-wpforms" aria-hidden="true"></i><span translate="News"></span></a>
             </li>
         </ul>
     </div>

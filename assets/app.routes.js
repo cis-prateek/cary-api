@@ -4,7 +4,7 @@ app
   .config(config)
   .run(checkURLAccess);
 
-function config ($stateProvider, $urlRouterProvider, $locationProvider) {
+function config ($stateProvider, $urlRouterProvider, $locationProvider, $translateProvider) {
   // $locationProvider.html5Mode({
   //     enabled: true,
   //     requireBase: false
@@ -153,6 +153,21 @@ function config ($stateProvider, $urlRouterProvider, $locationProvider) {
     });
 
   $urlRouterProvider.otherwise('login');
+
+  $translateProvider.preferredLanguage(navigator.language);
+  $translateProvider.registerAvailableLanguageKeys(['en', 'ch'],{
+    'en-*': 'en',
+    'ch-*': 'ch',
+    'cn-*': 'cn',
+    'hi-*': 'hi'
+  });
+
+  $translateProvider.useStaticFilesLoader({
+    prefix: 'locale/',
+    suffix: '.json'
+  });
+
+  $translateProvider.useSanitizeValueStrategy(null);
 };
 
 function checkURLAccess (Auth, $rootScope, $location, $localStorage, $state) {

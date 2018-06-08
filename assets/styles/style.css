@@ -289,3 +289,7 @@ section.dashboard-counts .number strong {
 .loader {
    margin-left: 45%;
 }
+
+.asterisk{
+    color: rgb(238, 20, 20)
+}

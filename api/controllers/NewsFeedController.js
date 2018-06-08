@@ -10,7 +10,7 @@ module.exports = {
     NewsFeedService.addNewsFeed(req, res);
   },
   getNewsFeed: (req, res) => {
-    NewsFeedService.getNewsFees(req, res);
+    NewsFeedService.getNewsFeed(req, res);
   },
   getNewsFeedById: (req, res) => {
     NewsFeedService.getNewsFeedById(req, res);

@@ -1,27 +1,28 @@
 <h2>
-  <span ng-bind='isEdit() ? "Edit" : "Add New"'></span> Admin</h2>
+  <span ng-hide='!isEdit()' translate="Edit_ADMIN"></span>
+  <span ng-hide='isEdit()' translate="Add_New_Admin"></span></h2>
 <form name="imageForm" class="col-md-4">
   <div class="form-group">
-    <h3>Name</h3>
+    <h3><span translate="Name"></span></h3>
     <input name="name" type="text" class="form-control" placeholder="Name" ng-model="formData.name" required value="">
-    <span class="text-danger" ng-show="(imageForm.name.$error.required && imageForm.name.$dirty)">Name required *</span>
+    <span class="text-danger" ng-show="(imageForm.name.$error.required && imageForm.name.$dirty)"><span translate="Name_required"></span> *</span>
   </div>
   <div class="form-group">
-    <h3>Phone Number</h3>
+    <h3><span translate="Phone_Number"></span></h3>
     <input name="phonenumber" type="text" class="form-control" placeholder="0123456789" ng-model="formData.phonenumber" required value="">
-    <span class="text-danger" ng-show="(imageForm.phonenumber.$error.required && imageForm.phonenumber.$dirty)">Phone Number required *</span>
+    <span class="text-danger" ng-show="(imageForm.phonenumber.$error.required && imageForm.phonenumber.$dirty)"><span translate="Phone_Number_required"></span> *</span>
   </div>
   <div class="form-group">
-    <h3>Email</h3>
+    <h3><span translate="Email"></span></h3>
     <input name="email" type="email" class="form-control" placeholder="email" ng-model="formData.email" required value="">
-    <span class="text-danger" ng-show="(imageForm.email.$error.required && imageForm.email.$dirty)">Email required *</span>
+    <span class="text-danger" ng-show="(imageForm.email.$error.required && imageForm.email.$dirty)"><span translate="Email_required"></span>*</span>
   </div>
   <div class="form-group">
-    <h3>Password</h3>
+    <h3><span translate="Password"></span></h3>
     <input name="password" type="text" class="form-control" placeholder="password" ng-model="formData.password" required value="">
-    <span class="text-danger" ng-show="(imageForm.password.$error.required && imageForm.password.$dirty)">Password required *</span>
+    <span class="text-danger" ng-show="(imageForm.password.$error.required && imageForm.password.$dirty)"><span translate="Password_required"></span> *</span>
   </div>
 
-  <button type="submit" ng-click="saveAdminUser()" ng-disabled="imageForm.$invalid" class="btn btn-primary">Submit</button>
-  <button type="submit" ui-sref="admin.admin-users" class="btn btn-primary">Back</button>
+  <button type="submit" ng-click="saveAdminUser()" ng-disabled="imageForm.$invalid" class="btn btn-primary"><span translate="Submit"></span></button>
+  <button type="submit" ui-sref="admin.admin-users" class="btn btn-primary"><span translate="Back"></span></button>
 </form>

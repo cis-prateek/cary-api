@@ -1,5 +1,5 @@
 'use strict';
-app.controller('mainCtrl', function ($scope, httpService, $location, Auth, Upload, notificationService) {
+app.controller('mainCtrl', function ($scope, httpService, $location, Auth, Upload, notificationService, $translate) {
   $scope.logout = function () {
     httpService.postData('/api/admin/logout')
       .success(function (response, status, headers, config) {
@@ -9,6 +9,18 @@ app.controller('mainCtrl', function ($scope, httpService, $location, Auth, Uploa
       .error(function (error, status, headers, config) {
       });
   };
+  $scope.selectedLang = 'en';
+  $scope.langSyntax = '';
+  $scope.changeLanguage = function (lang) {
+    $translate.use(lang);
+    $scope.selectedLang = lang;
+    $scope.langSyntax = '';
+    if (lang === 'ch') {
+      console.log('ch');
+      $scope.langSyntax = '_ch';
+    }
+  };
+
   // // upload later on form submit or something similar
   // $scope.uploadSliderImages = function () {
   //   const data = {
@@ -34,6 +46,15 @@ app.controller('mainCtrl', function ($scope, httpService, $location, Auth, Uploa
   //   });
   // };
 
+  var lang = {
+    'en': {
+      UNABLE_TO_CONNECT: 'Unable to connect with the server while get the dashboard informations'
+    },
+    'ch': {
+      UNABLE_TO_CONNECT: '获取仪表板信息时无法与服务器连接'
+    }
+  };
+
   $scope.getAllCounts = () => {
     httpService.getData('/api/counts')
       .success((response, status, headers, config) => {
@@ -47,7 +68,7 @@ app.controller('mainCtrl', function ($scope, httpService, $location, Auth, Uploa
         }
       })
       .error(function (error, status, headers, config) {
-        notificationService.error('Unable to connect with the server while get the dashboard informations.');
+        notificationService.error(lang[scope.selectedLang].UNABLE_TO_CONNECT);
       });
   };
   $scope.getAllCounts();

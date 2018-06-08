@@ -16,6 +16,14 @@ module.exports = {
       type: 'string',
       defaultsTo: ''
     },
+    title_ch: {
+      type: 'string',
+      required: true
+    },
+    description_ch: {
+      type: 'string',
+      defaultsTo: ''
+    },
     cloudId: {
       type: 'string',
       required: true

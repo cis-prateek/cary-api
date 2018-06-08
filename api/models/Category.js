@@ -13,6 +13,12 @@ module.exports = {
       minLength: 2,
       required: true
     },
+    title_ch: {
+      type: 'string',
+      unique: true,
+      minLength: 2,
+      required: true
+    },
     image: {
       type: 'object',
       defaultsTo: null

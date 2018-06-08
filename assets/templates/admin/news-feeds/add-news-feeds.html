@@ -1,32 +1,58 @@
-<h2 ng-init="getNewsFeed()" ng-bind='isEdit() ? "Edit News Feed" : "Add News Feed"'></h2>
+<h2 ng-init="getNewsFeed()" >
+  <span ng-hide='!isEdit()' translate="Edit_News_Feed"></span>
+  <span ng-hide='isEdit()' translate="Add_News_Feed"></span></h2>
+</h2>
 <div class="col-md-offset-2 col-md-8">
   <form ng-app="fileUpload" ng-submit="addNewsFeeds()" name="formData" novalidate>
     <div class="form-group">
-      <label for="exampleInputEmail1">Title</label>
-      <input name="title" type="select" class="form-control" ng-model="newsFeedTitle" placeholder="Title" ng-model="title" required>
+      <label for="exampleInputEmail1"> <span translate="Title"></span><span class="asterisk">*</span></label>
+      <input name="title" type="select" class="form-control" ng-model="newsFeedTitle" placeholder="Title" ng-model="title" required ng-change="updateField('title')">
+      <span class="text-danger" ng-show="(formData.title.$error.required && formData.title.$dirty)">
+        <span translate="Required"></span> *</span>
     </div>
     <div class="form-group">
-      <label for="exampleInputPassword1">Description</label>
-      <!-- <input name="description" type="text" class="form-control" ng-model="newsFeedDescription" placeholder="Description" ng-model="description"> -->
-      <textarea name="description" type="text" class="form-control" ng-model="newsFeedDescription" rows="5" placeholder="Description"
-        ng-model="description">{{description}}</textarea>
+      <label for="exampleInputEmail1"> <span translate="Title"></span>(ch)<span class="asterisk">*</span></label>
+      <input name="title_ch" type="select" class="form-control" ng-model="newsFeedTitle_ch" placeholder="Title" ng-model="title" required ng-change="updateField('title_ch')">
+      <span class="text-danger" ng-show="(formData.title_ch.$error.required && formData.title_ch.$dirty)">
+        <span translate="Required"></span> *</span>
     </div>
+
+
+
+    <div class="form-group">
+      <label for="exampleInputPassword1"><span translate="Description"></span><span class="asterisk">*</span></label>
+      <!-- <input name="description" type="text" class="form-control" ng-model="newsFeedDescription" placeholder="Description" ng-model="description"> -->
+      <textarea name="description" type="text" class="form-control" ng-model="newsFeedDescription" rows="5" placeholder="Description" ng-model="description" ng-change="updateField('desc')" required>{{description}}</textarea>
+        <span class="text-danger" ng-show="(formData.description.$error.required && formData.description.$dirty)">
+          <span translate="Required"></span> *</span>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputPassword1"><span translate="Description"></span>(ch)<span class="asterisk">*</span></label>
+      <!-- <input name="description" type="text" class="form-control" ng-model="newsFeedDescription" placeholder="Description" ng-model="description"> -->
+      <textarea name="description_ch" type="text" class="form-control" ng-model="newsFeedDescription_ch" rows="5" placeholder="Description" ng-model="description" ng-change="updateField('desc_ch')" required>{{description}}</textarea>
+        <span class="text-danger" ng-show="(formData.description_ch.$error.required && formData.description_ch.$dirty)">
+          <span translate="Required"></span> *</span>
+    </div>
+
     <div class="form-group">
       <div ng-show="ImageSrc" class="category-img">
         <img width="150" height="150" ng-src="{{ImageSrc}}" style="margin-bottom: 10px;" />
       </div>
       <label class="btn btn-default">
-        Browse
-        <i class="fa fa-paperclip" aria-hidden="true"></i>
+        <span translate="Browse"></span>
+        <i class="fa fa-paperclip" aria-hidden="true"></i> <span class="asterisk">*</span>
         <input name="file" type="file" ngf-select class="hide" ng-model="image" ngf-multiple="false" ng-file-select="onFileSelect($files)"
-          required ngf-pattern="'.png,.jpeg'" accept=".png,.jpeg" />
+          required ngf-pattern="'.png,.jpeg'" accept=".png,.jpeg" ng-change="updateField('img')"/>
       </label>
+      <span class="text-danger" ng-show="(formData.file.$error.required && formData.file.$dirty)">
+        <span translate="Required"></span> *</span>
 
       <br>
-      <span style="color:red">Supported format : png, jpeg</span>
+      <span style="color:red"><span translate="Supported_format_image"></span></span>
     </div>
     <div class="form-group">
-      <button ng-disabled="disableSave" type="submit" class="btn btn-primary">Save</button>
+      <button ng-disabled="formData.$invalid" type="submit" class="btn btn-primary"><span translate="Save"></span></button>
     </div>
   </form>
 </div>

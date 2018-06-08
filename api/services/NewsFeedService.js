@@ -115,7 +115,7 @@ function addData (req, res) {
     });
 }
 
-exports.getNewsFees = async (req, res) => {
+exports.getNewsFeed = async (req, res) => {
   const limit = req.body.limit,
     skip = req.body.skip;
   let response = [];
