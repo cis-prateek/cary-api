@@ -76,7 +76,7 @@ exports.uploadPolicyOrAgreement = async (req, res) => {
 };
 
 exports.downloadAgreement = async (req, res) => {
-  const fileName = req.params.fileName;
+  let fileName = req.params.fileName;
   try {
     // let returnFileName;
     fs.readdir(`${uploadDirPath}`, (err, files) => {
