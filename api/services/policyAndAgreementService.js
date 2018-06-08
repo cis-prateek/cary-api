@@ -44,7 +44,7 @@ exports.uploadPolicyOrAgreement = async (req, res) => {
         let uniqueName = `${req.params.type}.${fileExtention}`;
         cb(null, uniqueName);
       }
-    }, async function whenDone (err, uploadedFiles) {
+    }, async function whenDone(err, uploadedFiles) {
       if (!uploadedFiles.length) {
         return res.status(201).json({
           result: 0,
@@ -78,53 +78,36 @@ exports.uploadPolicyOrAgreement = async (req, res) => {
 exports.downloadAgreement = async (req, res) => {
   const fileName = req.params.fileName;
   try {
-    const filePath = `${uploadDirPath}/${fileName}`;
-    const isFileAvailable = fs.existsSync(filePath);
-    if (!isFileAvailable) {
-      return res.status(201).json({
-        result: 0,
-        message: 'File Not Available'
+    // let returnFileName;
+    fs.readdir(`${uploadDirPath}`, (err, files) => {
+      files.forEach(file => {
+        let fileNameSplit = file.split('.');
+        if (fileNameSplit.length && fileNameSplit[0] === fileName) {
+          fileName = file;
+          const filePath = `${uploadDirPath}/${fileName}`;
+          const isFileAvailable = fs.existsSync(filePath);
+          if (!isFileAvailable) {
+            return res.status(201).json({
+              result: 0,
+              message: 'File Not Available'
+            });
+          }
+          var SkipperDisk = require('skipper-disk');
+          var fileAdapter = SkipperDisk(/* optional opts */);
+          //var dataMessage = "";
+          var read = require('read-file');
+          var buffer = read.sync(`${uploadDirPath}/${fileName}`, {
+            encoding: 'utf8'
+          });
+
+          return res.status(200).json({
+            result: 1,
+            data: buffer
+          });
+        }
       });
-    }
-
-    // var file = fs.readFileSync(`${uploadDirPath}/${fileName}`, 'binary');
-
-    // res.setHeader('Content-Length', file.length);
-    // res.write(file, 'binary');
-    // res.end();
-
-    // var pdfreader = require('pdfreader');
-    // new PdfReader().parseFileItems("sample.pdf", function(err, item){
-    //   if (err)
-    //     callback(err);
-    //   else if (!item)
-    //     callback();
-    //   else if (item.text)
-    //     console.log(item.text);
-    // });
-    var SkipperDisk = require('skipper-disk');
-    var fileAdapter = SkipperDisk(/* optional opts */);
-    //var dataMessage = "";
-    var read = require('read-file');
-    var buffer = read.sync(`${uploadDirPath}/${fileName}`, {
-      encoding: 'utf8'
     });
-    //console.log(buffer)
-    // var data = fileAdapter.read(`${uploadDirPath}/${fileName}`)
-    //   .on('error', function (err){
-    //     console.log(err)
-    //     dataMessage = err;
-    //   }).on("success",function (data) {
-    //     dataMessage = data;
-    //     console.log(data);
-    //   })
-    //   .pipe(res);
-    //console.log("data:: ",data);
 
-    return res.status(200).json({
-      result: 1,
-      data: buffer
-    });
   } catch (e) {
     console.log('---------------', e);
 
