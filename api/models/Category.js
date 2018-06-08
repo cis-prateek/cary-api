@@ -10,13 +10,13 @@ module.exports = {
     title: {
       type: 'string',
       unique: true,
-      minLength: 2,
+      minLength: 1,
       required: true
     },
     title_ch: {
       type: 'string',
       unique: true,
-      minLength: 2,
+      minLength: 1,
       required: true
     },
     image: {
