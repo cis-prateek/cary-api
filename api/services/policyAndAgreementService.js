@@ -76,14 +76,14 @@ exports.uploadPolicyOrAgreement = async (req, res) => {
 };
 
 exports.downloadAgreement = async (req, res) => {
-  let fileName = req.params.fileName;
+  const fileNameParam = req.params.fileName;
   try {
     // let returnFileName;
     fs.readdir(`${uploadDirPath}`, (err, files) => {
       files.forEach(file => {
         let fileNameSplit = file.split('.');
-        if (fileNameSplit.length && fileNameSplit[0] === fileName) {
-          fileName = file;
+        if (fileNameSplit.length && fileNameSplit[0] === fileNameParam) {
+          let fileName = file;
           const filePath = `${uploadDirPath}/${fileName}`;
           const isFileAvailable = fs.existsSync(filePath);
           if (!isFileAvailable) {
