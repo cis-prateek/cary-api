@@ -8,7 +8,7 @@
           <div class="thumbnail">
             <img src="{{news.image ? news.image : 'http://placehold.it/500x300'}}" alt="" style="height: 200px; width: 100%">
             <div class="caption">
-              <h4{{ news['title' + langSyntax]}}</h4>
+              <h4>{{ news['title' + langSyntax]}}</h4>
               <p>{{ news['description' + langSyntax]}}</p>
               <p>
                 <a href="javascript:void(0)" ui-sref="admin.edit-news-feeds({id: news.id})" class="btn btn-info btn-xs" role="button"><span translate="Edit"></span></a>
