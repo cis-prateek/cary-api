@@ -22,14 +22,6 @@ exports.getNameOfFile = async (req, res) => {
           });
         }
       }
-      // files.forEach(file => {
-      //   let fileNameSplit = file.split('.');
-      //   if (fileNameSplit.length && fileNameSplit[0] === req.params.fileName) {
-      //     return res.status(200).json({
-      //       result: file
-      //     });
-      //   }
-      // });
     });
   } catch (e) {
     return res.status(201).json({
@@ -52,6 +44,7 @@ exports.uploadPolicyOrAgreement = async (req, res) => {
         let fileNameSplit_N = file.split('.');
         if (fileNameSplit_N.length && fileNameSplit_N[0] === req.params.type) {
           existFileName = file;
+          fs.unlinkSync(`${uploadDirPath}/${existFileName}`);
           // break;
         }
       });
@@ -61,15 +54,15 @@ exports.uploadPolicyOrAgreement = async (req, res) => {
       dirname: uploadDirPath,
       saveAs: function (__newFileStream, cb) {
         let uniqueName = `${req.params.type}.${fileExtention}`;
-        if (
-          existFileName !== `${req.params.type}.${fileExtention}` &&
-          existFileName &&
-          fs.existsSync(`${uploadDirPath}/${existFileName}`)
-        ) {
-          console.log('remove', uploadDirPath);
-          console.log('remove existFileName', existFileName);
-          fs.unlinkSync(`${uploadDirPath}/${existFileName}`);
-        }
+        // if (
+        //   existFileName !== `${req.params.type}.${fileExtention}` &&
+        //   existFileName &&
+        //   fs.existsSync(`${uploadDirPath}/${existFileName}`)
+        // ) {
+        //   console.log('remove', uploadDirPath);
+        //   console.log('remove existFileName', existFileName);
+        //   fs.unlinkSync(`${uploadDirPath}/${existFileName}`);
+        // }
         cb(null, uniqueName);
       }
     }, async function whenDone(err, uploadedFiles) {
