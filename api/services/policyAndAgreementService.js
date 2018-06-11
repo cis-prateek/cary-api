@@ -13,14 +13,23 @@ exports.getNameOfFile = async (req, res) => {
   try {
     let existFileName;
     fs.readdir(`${uploadDirPath}`, (err, files) => {
-      files.forEach(file => {
+      for (var k = 0; k < files.length; k++) {
+        let file = files[k];
         let fileNameSplit = file.split('.');
         if (fileNameSplit.length && fileNameSplit[0] === req.params.fileName) {
           return res.status(200).json({
             result: file
           });
         }
-      });
+      }
+      // files.forEach(file => {
+      //   let fileNameSplit = file.split('.');
+      //   if (fileNameSplit.length && fileNameSplit[0] === req.params.fileName) {
+      //     return res.status(200).json({
+      //       result: file
+      //     });
+      //   }
+      // });
     });
   } catch (e) {
     return res.status(201).json({
