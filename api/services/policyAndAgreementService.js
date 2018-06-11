@@ -10,17 +10,25 @@ cloudinary.config({
 });
 
 exports.getNameOfFile = async (req, res) => {
-  let existFileName;
-  fs.readdir(`${uploadDirPath}`, (err, files) => {
-    files.forEach(file => {
-      let fileNameSplit = file.split('.');
-      if (fileNameSplit.length && fileNameSplit[0] === req.params.fileName) {
-        return res.status(200).json({
-          result: file
-        });
-      }
+  try {
+    let existFileName;
+    fs.readdir(`${uploadDirPath}`, (err, files) => {
+      files.forEach(file => {
+        let fileNameSplit = file.split('.');
+        if (fileNameSplit.length && fileNameSplit[0] === req.params.fileName) {
+          return res.status(200).json({
+            result: file
+          });
+        }
+      });
     });
-  });
+  } catch (e) {
+    return res.status(201).json({
+      result: 0,
+      message: 'Internal server error!',
+      error: e
+    });
+  }
 };
 
 exports.uploadPolicyOrAgreement = async (req, res) => {
