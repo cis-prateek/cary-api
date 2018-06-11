@@ -3,8 +3,8 @@
     <form name="agreement">
         <h5><span translate="Platform_Agreement"></span>: </h5>
         <label class="btn btn-default">
-            <input class="hide" type="file" ngf-select ng-model="agreementFile" name="agreementFile" ngf-pattern="'.doc,.docx,.txt,.pdf'"
-                accept=".doc,.docx,.txt,.pdf" ngf-max-size="10MB" /><span translate="Browse_File"></span>
+            <input class="hide" type="file" ngf-select ng-model="agreementFile" name="agreementFile" ngf-pattern="'.txt'"
+                accept=".txt" ngf-max-size="10MB" /><span translate="Browse_File"></span>
         </label>
         <a ng-show="getNameAgreement" href="/uploads/{{getNameAgreement}}" target="_blank"><img src="/images/download.png" width="25"></a>
         <br>
