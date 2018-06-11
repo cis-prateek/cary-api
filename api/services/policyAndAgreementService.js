@@ -28,11 +28,12 @@ exports.uploadPolicyOrAgreement = async (req, res) => {
     const fileName = req.file('file')._files[0].stream.filename,
       fileNameSplit = fileName.split('.'),
       fileExtention = fileNameSplit[fileNameSplit.length - 1];
+
     let existFileName = '';
     fs.readdir(`${uploadDirPath}`, (err, files) => {
       files.forEach(file => {
-        let fileNameSplit = file.split('.');
-        if (fileNameSplit.length && fileNameSplit[0] === req.params.type) {
+        let fileNameSplit_N = file.split('.');
+        if (fileNameSplit_N.length && fileNameSplit_N[0] === req.params.type) {
           existFileName = file;
         }
       });
@@ -52,6 +53,7 @@ exports.uploadPolicyOrAgreement = async (req, res) => {
           error: err
         });
       }
+
       if (
         existFileName !== `${req.params.type}.${fileExtention}` &&
         existFileName &&
