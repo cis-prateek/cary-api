@@ -43,6 +43,7 @@ exports.uploadPolicyOrAgreement = async (req, res) => {
         let fileNameSplit_N = file.split('.');
         if (fileNameSplit_N.length && fileNameSplit_N[0] === req.params.type) {
           existFileName = file;
+          // break;
         }
       });
     });
@@ -67,6 +68,8 @@ exports.uploadPolicyOrAgreement = async (req, res) => {
         existFileName &&
         fs.existsSync(`${uploadDirPath}/${existFileName}`)
       ) {
+        console.log('remove', uploadDirPath);
+        console.log('remove existFileName', existFileName);
         fs.unlinkSync(`${uploadDirPath}/${existFileName}`);
       }
 
