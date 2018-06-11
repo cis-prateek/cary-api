@@ -61,6 +61,15 @@ exports.uploadPolicyOrAgreement = async (req, res) => {
       dirname: uploadDirPath,
       saveAs: function (__newFileStream, cb) {
         let uniqueName = `${req.params.type}.${fileExtention}`;
+        if (
+          existFileName !== `${req.params.type}.${fileExtention}` &&
+          existFileName &&
+          fs.existsSync(`${uploadDirPath}/${existFileName}`)
+        ) {
+          console.log('remove', uploadDirPath);
+          console.log('remove existFileName', existFileName);
+          fs.unlinkSync(`${uploadDirPath}/${existFileName}`);
+        }
         cb(null, uniqueName);
       }
     }, async function whenDone(err, uploadedFiles) {
@@ -70,16 +79,6 @@ exports.uploadPolicyOrAgreement = async (req, res) => {
           message: 'File not Uploaded, Please try again.',
           error: err
         });
-      }
-
-      if (
-        existFileName !== `${req.params.type}.${fileExtention}` &&
-        existFileName &&
-        fs.existsSync(`${uploadDirPath}/${existFileName}`)
-      ) {
-        console.log('remove', uploadDirPath);
-        console.log('remove existFileName', existFileName);
-        fs.unlinkSync(`${uploadDirPath}/${existFileName}`);
       }
 
       return res.status(200).send({
