@@ -78,7 +78,7 @@ app.controller('newsFeedsController', [
     scope.imageError = false;
     // upload later on form submit or something similar
     scope.addNewsFeeds = () => {
-      if (stateParams.id) {
+      if (stateParams.id && !scope.titleError && !scope.titleError_ch && !scope.descError && !scope.descError_ch && !scope.imageError) {
         // edit
 
         if (scope.ImageSrcOld === scope.ImageSrc) {
@@ -108,10 +108,12 @@ app.controller('newsFeedsController', [
       } else {
         // add new
         console.log('scope.formData.file.$viewValue', scope.formData.file.$viewValue);
-        if (scope.formData.$valid) {
+        if (scope.formData.$valid && !scope.titleError && !scope.titleError_ch && !scope.descError && !scope.descError_ch && !scope.imageError) {
           const data = {
             title: scope.formData.title.$viewValue,
+            title_ch: scope.formData.title_ch.$viewValue,
             description: scope.formData.description.$viewValue,
+            description_ch: scope.formData.description_ch.$viewValue,
             image: scope.formData.file.$viewValue
           };
           scope.upload(data, '/api/newsfeed');
@@ -173,19 +175,22 @@ app.controller('newsFeedsController', [
     scope.updateField = function (field){
       switch(field) {
       case 'title':
-        scope.titleError = false;
+        scope.titleError = ! scope.formData.title.$viewValue.trim();
         break;
       case 'title_ch':
-        scope.titleError_ch = false;
+        scope.titleError_ch = ! scope.formData.title_ch.$viewValue.trim();
         break;
       case 'desc':
-        scope.descError = false;
+        scope.descError = ! scope.formData.description.$viewValue.trim();
         break;
       case 'desc_ch':
-        scope.descError_ch = false;
+        scope.descError_ch = ! scope.formData.description_ch.$viewValue.trim();
         break;
       case 'img':
-        scope.imageError = false;
+        scope.imageError = ! scope.ImageSrc && !scope.formData.file.$viewValue;
+        if(!scope.formData.file.$viewValue){
+          scope.ImageSrc = '';
+        }
         break;
       default:
         break;
