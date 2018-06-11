@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles/style.css">
+  <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+  <link href="styles/sb-admin-2.css" rel="stylesheet">
+  <link href="styles/icons.css" rel="stylesheet">
+  <link href="vendor/morrisjs/morris.css" rel="stylesheet">
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/2.1.0/toaster.css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.min.js"></script>
+  <script src="./js/angular-cookies.min.js"></script>
+  <script src="./js/ngStorage.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.2.13/ng-file-upload-shim.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.2.13/ng-file-upload.min.js"></script>
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" /> -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js" ></script> -->
+  <script src="http://code.angularjs.org/1.4.2/angular-animate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/2.1.0/toaster.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.3.0/lodash.js"></script>
+
+  <!-- datatable -->
+  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+  <!-- datatable -->
+
+  <!-- anguar translate -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.18.1/angular-translate.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.18.1/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+</head>
+
+<body>
+
+  <div ng-app="app">
+    <toaster-container toaster-options="{'time-out': 2000}"></toaster-container>
+    <div ui-view></div>
+  </div>
+
+</body>
+
+
+<script src="./init.js"></script>
+<script src='./app.routes.js'></script>
+
+<!-- controllers -->
+<script src="./controllers/admin/adminCtrl.js"></script>
+<script src="./controllers/admin/recPassCtrl.js"></script>
+<script src="./controllers/admin/mainCtrl.js"></script>
+<script src="./controllers/admin/loginCtrl.js"></script>
+<script src="./controllers/admin/categoryCtrl.js"></script>
+<script src="./controllers/admin/uploadDocsController.js"></script>
+<script src="./controllers/admin/usersController.js"></script>
+<script src="./controllers/admin/sliderImageCtrl.js"></script>
+<script src="./controllers/admin/newsFeedsController.js"></script>
+<script src="./controllers/admin/changePassCtrl.js"></script>
+<script src="./controllers/admin/adminUsersController.js"></script>
+<!-- <script src="./controllers/admin/profileCtrl.js"></script> -->
+
+<!-- services -->
+<script src="./services/httpservice.js"></script>
+<script src="./services/notificationservice.js"></script>
+
+<!-- factories -->
+<script src="./factories/auth.js"></script>
+
+</html>

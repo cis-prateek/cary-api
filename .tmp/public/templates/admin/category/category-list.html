@@ -1,0 +1,82 @@
+<div class="col-md-12 add-new-cat">
+    <a ui-sref="admin.category-add" class="btn btn-link pull-right">
+        <i class="fa fa-user-plus" aria-hidden="true"></i><span translate="Add_New"></span></a>
+</div>
+<ul class="nav nav-tabs">
+    <li ng-class="{active:isSet(1)}">
+        <a href ng-click="setTab(1)"><span translate="Categories"></span></a>
+    </li>
+</ul>
+
+<div class="table-responsive" ng-show="isSet(1)">
+    <table ng-show="allCategories.length > 0" class="table table-hover">
+        <thead>
+            <tr>
+                <th><span translate="Title"></span></th>
+                <th><span translate="Icon"></span></th>
+                <th><span translate="Created_At"></span></th>
+                <th class="text-center"><span translate="Active"></span></th>
+                <th class="text-center"><span translate="Action"></span></th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="cat in allCategories track by $index">
+            <tr>
+                <td><a data-toggle="collapse" data-target="#accordion{{$index}}" class="clickable" >{{ cat['title' + langSyntax]}}</a></td>
+                <td>
+                    <img class="category-image" ng-src="{{cat && cat.image && cat.image.url ? cat.image.url : ''}}">
+                </td>
+                <td>{{cat.createdAt | date: medium}}</td>
+                <td class="text-center">
+                    <input ng-change="changeActiveStatus(cat)" type="checkbox" ng-checked="cat.isActive" ng-model="cat.isActive">
+                </td>
+                <td class="text-center">
+                    <a ui-sref="admin.category-edit({id: cat.id})">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <div id="accordion{{$index}}" class="collapse">
+                        <table ng-show="allSubCategoriesWithCat.length > 0" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th><span translate="Title"></span></th>
+                                    <th><span translate="Parent_Category_Title"></span></th>
+                                    <th><span translate="Icon"></span></th>
+                                    <th><span translate="Created_At"></span></th>
+                                    <th class="text-center"><span translate="Active"></span></th>
+                                    <th class="text-center"><span translate="Action"></span></th>
+                                </tr>
+                            </thead>
+                            <tbody ng-repeat="subCat in allSubCategoriesWithCat" ng-if="cat.title == subCat.categoryTitle">
+                                <tr>
+                                    <td>{{ subCat['title' + langSyntax]}}</td>
+                                    <td>{{ subCat['categoryTitle' + langSyntax]}}</td>
+                                    <td>
+                                        <img class="category-image" ng-src="{{subCat && subCat.image && subCat.image.url ? subCat.image.url : ''}}">
+                                    </td>
+                                    <td>{{subCat.createdAt | date: medium}}</td>
+                                    <td class="text-center">
+                                        <input ng-change="changeActiveStatus(subCat)" type="checkbox" ng-checked="subCat.isActive" ng-model="subCat.isActive">
+                                    </td>
+                                    <td class="text-center">
+                                        <a ui-sref="admin.category-edit({id: subCat.id})">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div ng-show="allSubCategoriesWithCat.length === 0" class="alert alert-info">
+                            <strong><span translate="Info"></span></strong><span translate="No_Sub_Categories"></span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div ng-show="allCategories.length === 0" class="alert alert-info">
+        <strong><span translate="Info"></span></strong><span translate="No_Categories"></span>
+    </div>
+</div>

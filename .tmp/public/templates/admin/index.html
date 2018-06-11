@@ -1,0 +1,92 @@
+<div id="wrapper">
+    <div ng-include="'templates/admin/common/header.html'"></div>
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div ui-view>
+                    <div class="content-inner">
+                        <!-- Page Header-->
+                        <header class="page-header">
+                            <div class="container-fluid">
+                                <h2 class="no-margin-bottom"><span translate="Dashboard"></span></h2>
+                            </div>
+                        </header>
+                        <!-- Dashboard Counts Section-->
+                        <section class="dashboard-counts no-padding-bottom">
+                            <div class="container-fluid">
+                                <div class="row bg-white has-shadow">
+                                    <!-- Item -->
+                                    <div class="col-xl-4 col-sm-4">
+                                        <div class="item d-flex align-items-center">
+                                            <div class="icon bg-violet">
+                                                <i class="icon-user"></i>
+                                            </div>
+                                            <div class="title">
+                                                <span> <span translate="Overall_Users"></span></span>
+                                                <div class="number">
+                                                    <strong>{{info.totalUsers || 0}}</strong>
+                                                </div>
+                                                <div class="progress">
+                                                    <div role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-violet width"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-sm-4">
+                                        <div class="item d-flex align-items-center">
+                                            <div class="icon bg-violet">
+                                                <i class="icon-user"></i>
+                                            </div>
+                                            <div class="title">
+                                                <span> <span translate="Total_Providers"></span></span>
+                                                <div class="number">
+                                                    <strong>{{info.providers || 0}}</strong>
+                                                </div>
+                                                <div class="progress">
+                                                    <div role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-violet width"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-sm-4">
+                                        <div class="item d-flex align-items-center">
+                                            <div class="icon bg-violet">
+                                                <i class="icon-user"></i>
+                                            </div>
+                                            <div class="title">
+                                                <span> <span translate="Total_Seekers"></span> </span>
+                                                <div class="number">
+                                                    <strong>{{info.seekers || 0}}</strong>
+                                                </div>
+                                                <div class="progress">
+                                                    <div role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-violet width"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Item -->
+                                    <div class="col-xl-4 col-sm-4">
+                                        <div class="item d-flex align-items-center">
+                                            <div class="icon bg-red">
+                                                <i class="icon-padnote"></i>
+                                            </div>
+                                            <div class="title">
+                                                <span> <span translate="Total_Transaction"></span></span>
+                                                <div class="number">
+                                                    <strong>{{info.transactions || 0}}</strong>
+                                                </div>
+                                                <div class="progress">
+                                                    <div role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-red width"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

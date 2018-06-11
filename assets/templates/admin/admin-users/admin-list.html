@@ -1,0 +1,32 @@
+<div>
+  <h3>
+    <span translate="Admin_Users"></span>
+  </h3>
+  <a ui-sref="admin.add-admin-user" class="btn btn-link pull-right margin-top-10"><span translate="Add_Admin"></span></a>
+  <div class="row marginLeftRightnone">
+    <table class="table table-condensed" id="adminUserTable">
+      <thead>
+        <tr>
+          <th class="text-center"> <span translate="S_No"></span></th>
+          <th class="text-center"> <span translate="Name"></span></th>
+          <th class="text-center"> <span translate="Phone_Number"></span></th>
+          <th class="text-center"> <span translate="Email"></span></th>
+          <th class="text-center"> <span translate="Join_on"></span></th>
+          <th class="text-center"> <span translate="Action"></span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in allUsers">
+          <td class="text-center">{{$index + 1}}</td>
+          <td class="text-center">{{user.name || "NA"}}</td>
+          <td class="text-center">{{user.phonenumber || "NA"}}</td>
+          <td class="text-center">{{user.email || "NA"}}</td>
+          <td class="text-center">{{user.createdAt | date: medium}}</td>
+          <th class="text-center" ng-show="isRemovable(user.email)">
+            <a href="javascript:void(0);" ng-click="removeAdminUser(user.id)">X</a>
+          </th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

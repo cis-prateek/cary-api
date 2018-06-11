@@ -1,0 +1,52 @@
+<h2><span translate="Slider_Image"></span></h2>
+<div class="col-md-offset-2 col-md-8">
+  <form ng-app="fileUpload" ng-submit="uploadSliderImages()" name="formData" novalidate>
+    
+    <div class="form-group">
+      <label for="exampleInputEmail1"><span translate="Title"></span></label>
+      <input name="title" type="select" class="form-control" placeholder="title" ng-model="title" required>
+      <span class="text-danger" ng-show="(formData.title.$error.required && formData.title.$dirty)">
+        <span translate="Required"></span> *</span>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1"><span translate="Title"></span>(ch)</label>
+      <input name="title_ch" type="select" class="form-control" placeholder="title" ng-model="title_ch" required>
+      <span class="text-danger" ng-show="(formData.title_ch.$error.required && formData.title_ch.$dirty)">
+        <span translate="Required"></span> *</span>
+    </div>
+    
+    
+    <div class="form-group">
+      <label for="exampleInputPassword1"><span translate="Description"></span></label>
+      <!-- <input name="description" type="text" class="form-control" placeholder="Description" ng-model="description"> -->
+      <textarea name="description" type="text" class="form-control" placeholder="Description" ng-model="description" rows="5" required>{{description}}</textarea>
+      <span class="text-danger" ng-show="(formData.description.$error.required && formData.description.$dirty)">
+        <span translate="Required"></span> *</span>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1"><span translate="Description"></span>(ch)</label>
+      <!-- <input name="description" type="text" class="form-control" placeholder="Description" ng-model="description"> -->
+      <textarea name="description_ch" type="text" class="form-control" placeholder="Description" ng-model="description_ch" rows="5" required>{{description}}</textarea>
+      <span class="text-danger" ng-show="(formData.description_ch.$error.required && formData.description_ch.$dirty)">
+        <span translate="Required"></span> *</span>
+    </div>
+
+
+    <div class="form-group">
+      <label for="file"><span translate="Image"></span></label>
+      <label class="btn btn-default clearfix">
+        <span translate="Browse"></span>
+        <input type="file" name="file" accept="image/*" class="hide" ngf-select ng-model="files" ngf-multiple="false" required ngf-pattern="'.png,.jpeg'"
+          accept=".png,.jpeg" />
+      </label>
+      <span class="text-danger" ng-show="(formData.file.$error.required && formData.file.$dirty)">
+        <span translate="Required"></span> *</span>
+      <br>
+      <span style="color:red"><span translate="Supported_format_image"></span></span>
+    </div>
+    <div ng-show="errorMessage" class="alert alert-warning">{{errorMessage}}</div>
+    <div class="form-group">
+      <button type="submit" ng-disabled="formData.$invalid" class="btn btn-primary"><span translate="Save"></span></button>
+    </div>
+  </form>
+</div>
