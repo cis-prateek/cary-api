@@ -79,13 +79,13 @@ exports.uploadPolicyOrAgreement = async (req, res) => {
       ) {
         console.log('remove', uploadDirPath);
         console.log('remove existFileName', existFileName);
-        fs.unlinkSync(`${uploadDirPath}/${existFileName}`);
+        fs.unlinkSync(`${uploadDirPath}/${existFileName}`, () => {
+          return res.status(200).send({
+            result: 1,
+            message: 'Successfully Uploaded'
+          });
+        });
       }
-
-      return res.status(200).send({
-        result: 1,
-        message: 'Successfully Uploaded'
-      });
     });
   } catch (e) {
 
