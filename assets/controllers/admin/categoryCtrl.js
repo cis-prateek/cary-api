@@ -28,6 +28,10 @@ app.controller('categoryCtrl', [
       }
     };
 
+    scope.titleError = false;
+    scope.catError = false;
+    scope.titleChError = false;
+    scope.imageError = false;
     scope.allCategories = [];
     scope.tab = 1;
     if (state.current.name === 'admin.category') {
@@ -72,13 +76,29 @@ app.controller('categoryCtrl', [
 
     if (state.current.name === 'admin.category-add') {
       scope.saveCategory = () => {
-        const data = {
-          title: scope.formData.title,
-          title_ch: scope.formData.title_ch,
-          parentId: scope.formData.parentId,
-          image: scope.image
-        };
-        scope.upload(data);
+        if(scope.imageForm.title.$viewValue && scope.imageForm.title_ch.$viewValue ){
+          if((scope.isSubCategory && scope.formData.parentId) || !scope.isSubCategory){
+            const data = {
+              title: scope.formData.title,
+              title_ch: scope.formData.title_ch,
+              parentId: scope.formData.parentId,
+              image: scope.image
+            };
+            scope.upload(data);
+          } else {
+            scope.catError = true;
+          }
+        }else {
+          if(!scope.imageForm.title.$viewValue){
+            scope.titleError = true;
+          }
+          if(!scope.imageForm.title_ch.$viewValue){
+            scope.titleChError = true;
+          }
+          if(!scope.ImageSrc){
+            scope.imageError = true;
+          }
+        }
       };
 
       // upload on file select or drop
@@ -128,13 +148,19 @@ app.controller('categoryCtrl', [
       scope.getCategoryById(stateParams.id);
       // edit code
       scope.saveCategory = () => {
-        const data = {
-          title: scope.formData.title,
-          title_ch: scope.formData.title_ch,
-          parentId: scope.formData.parentId,
-          image: scope.image
-        };
-        scope.editCategory(data);
+        if(scope.imageForm.title.$viewValue && scope.imageForm.title_ch.$viewValue){
+          if((scope.isSubCategory && scope.formData.parentId) || !scope.isSubCategory){
+            const data = {
+              title: scope.formData.title,
+              title_ch: scope.formData.title_ch,
+              parentId: scope.formData.parentId,
+              image: scope.image
+            };
+            scope.editCategory(data);
+          }else{
+            scope.catError = true;
+          }
+        }
       };
 
       scope.editCategory = (data) => {
@@ -161,6 +187,26 @@ app.controller('categoryCtrl', [
           });
       };
     }
+
+    scope.updateField = function (field){
+      switch(field) {
+      case 'title':
+        scope.titleError = ! scope.imageForm.title.$viewValue.trim();
+        break;
+      case 'title_ch':
+        scope.titleChError = ! scope.imageForm.title_ch.$viewValue.trim();
+        break;
+      case 'image':
+        scope.imageError = !scope.ImageSrc;
+        break;
+      case 'parent_category':
+        scope.catError = ! scope.imageForm.parentId.$viewValue.trim();
+        break;
+      default:
+        break;
+      }
+    };
+
   }]);
 
 // ngFileSelect :: for showing image preview before upload

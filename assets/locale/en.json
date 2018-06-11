@@ -92,6 +92,10 @@
     "Edit_Admin":"Edit Admin",
     "Add_New_Admin":"Add New Admin",
     "Edit_News_Feed":"Edit News Feed",
-    "Add_News_Feed":"Add News Feed"
-
+    "Add_News_Feed":"Add News Feed",
+    "enter_name": "Please enter name",
+    "enter_phone": "Please eneter phone number",
+    "enter_email":"Please enter valid email",
+    "enter_password":"Please enter password",
+    "choose_parent_category":"Please select parent category"
 }
