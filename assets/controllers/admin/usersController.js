@@ -64,7 +64,7 @@ app
         httpService.getData('/api/users')
           .success((response, status, headers, config) => {
             if (response.result) {
-              scope.allUsers = [];
+              scope.allUsers = response.data;
               scope.allProviderUsers = _.filter(scope.allUsers, (o) => o.isProvider === true);
               scope.allSeekerUsers = _.filter(scope.allUsers, (o) => o.isProvider !== true);
               scope.setDatatable('provider');
