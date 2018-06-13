@@ -63,6 +63,7 @@ app
       scope.getAllUsersList = function () {
         httpService.getData('/api/users')
           .success((response, status, headers, config) => {
+            console.log('------users------', response);
             if (response.result) {
               scope.allUsers = response.data;
               scope.allProviderUsers = _.filter(scope.allUsers, (o) => o.isProvider === true);
