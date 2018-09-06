@@ -97,13 +97,17 @@ app
         return (scope.adminEmail !== userEmail) ? true : false;
       };
 
+      scope.nameError = false;
+      scope.phoneNumberError = false;
+      scope.emailError = false;
+      scope.passwordError = false;
       scope.saveAdminUser = function () {
         if (stateParams.id) {
           // edit
         } else {
           // add new
-          console.log('scope.formData.email.$viewValue', scope.formData.email);
-          if (scope.formData.email != '' && scope.formData.password != '') {
+          console.log('scope.formData.email.$viewValue', scope.imageForm);
+          if (scope.imageForm.$valid && !scope.nameError && !scope.phoneNumberError && !scope.emailError) {
             const data = {
               email: scope.formData.email,
               password: scope.formData.password,
@@ -122,8 +126,38 @@ app
               });
 
           } else {
-            notificationService.error(lang[scope.selectedLang].ALL_FIELD_REQ);
+            if(!scope.imageForm.name.$viewValue){
+              scope.nameError = true;
+            }
+            if(!scope.imageForm.phonenumber.$viewValue){
+              scope.phoneNumberError = true;
+            }
+            if(!scope.imageForm.email.$viewValue){
+              scope.emailError = true;
+            }
+            if(!scope.imageForm.password.$viewValue){
+              scope.passwordError = true;
+            }
           }
+        }
+      };
+
+      scope.updateField = function (field){
+        switch(field) {
+        case 'name':
+          scope.nameError = ! scope.imageForm.name.$viewValue.trim();
+          break;
+        case 'phonenumber':
+          scope.phoneNumberError = ! scope.imageForm.phonenumber.$viewValue.trim();
+          break;
+        case 'email':
+          scope.emailError = ! scope.imageForm.email.$viewValue.trim();
+          break;
+        case 'password':
+          scope.passwordError = ! scope.imageForm.password.$viewValue.trim();
+          break;
+        default:
+          break;
         }
       };
 

@@ -37,10 +37,16 @@ app.controller('sliderImageCtrl', [
       }
     };
 
+    scope.titleError = false;
+    scope.titleChError = false;
+    scope.descError = false;
+    scope.descChError =false;
+    scope.imageError = false;
+
     // upload later on form submit or something similar
     scope.disableSave = false;
     scope.uploadSliderImages = () => {
-      if (scope.formData.$valid) {
+      if (scope.formData.$valid && scope.formData.title.$viewValue && scope.formData.title_ch.$viewValue && scope.formData.description.$viewValue && scope.formData.description_ch.$viewValue && scope.formData.file.$viewValue) {
         scope.disableSave = true;
         const data = {
           title: scope.formData.title.$viewValue,
@@ -50,6 +56,22 @@ app.controller('sliderImageCtrl', [
           images: scope.formData.file.$viewValue
         };
         scope.upload(data);
+      } else {
+        if(!scope.formData.title.$viewValue){
+          scope.titleError = true;
+        }
+        if(!scope.formData.description.$viewValue){
+          scope.descError = true;
+        }
+        if(!scope.formData.title_ch.$viewValue){
+          scope.titleChError = true;
+        }
+        if(!scope.formData.description_ch.$viewValue){
+          scope.descChError = true;
+        }
+        if(!scope.formData.file.$viewValue){
+          scope.imageError = true;
+        }
       }
     };
 
@@ -99,6 +121,28 @@ app.controller('sliderImageCtrl', [
           notificationService.error(lang[scope.selectedLang].IMAGES_REMOVE_ERROR);
           console.log('error', error);
         });
+    };
+
+    scope.updateField = function (field){
+      switch(field) {
+      case 'title':
+        scope.titleError = ! scope.formData.title.$viewValue.trim();
+        break;
+      case 'title_ch':
+        scope.titleChError = ! scope.formData.title_ch.$viewValue.trim();
+        break;
+      case 'description':
+        scope.descError = ! scope.formData.description.$viewValue.trim();
+        break;
+      case 'description_ch':
+        scope.descChError = ! scope.formData.description_ch.$viewValue.trim();
+        break;
+      case 'image':
+        scope.imageError = !scope.formData.file.$viewValue;
+        break;
+      default:
+        break;
+      }
     };
 
     // scope.pop = function () {

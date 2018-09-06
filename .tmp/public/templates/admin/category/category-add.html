@@ -8,16 +8,14 @@
         <h3>
             <span translate="Title"></span>
         </h3>
-        <input name="title" type="text" class="form-control" placeholder="title" ng-model="formData.title" required value="">
-        <span class="text-danger" ng-show="(imageForm.title.$error.required && imageForm.title.$dirty)">
-            <span translate="Required"></span> *</span>
+        <input name="title" type="text" class="form-control" placeholder="title" ng-model="formData.title" ng-change="updateField('title')" required value="">
+        <label ng-if="titleError" class="asterisk"><span translate="enter_title"></span></label>
     </div>
     <div class="form-group">
         <h3>
             <span translate="Title"></span>(ch)</h3>
-        <input name="title_ch" type="text" class="form-control" placeholder="title" ng-model="formData.title_ch" required value="">
-        <span class="text-danger" ng-show="(imageForm.title_ch.$error.required && imageForm.title_ch.$dirty)">
-            <span translate="Required"></span> *</span>
+        <input name="title_ch" type="text" class="form-control" placeholder="title" ng-model="formData.title_ch" ng-change="updateField('title_ch')" required value="">
+        <label ng-if="titleChError" class="asterisk"><span translate="enter_title"></span></label>
     </div>
 
     <div class="form-group">
@@ -32,8 +30,9 @@
             <span translate="Browse"></span>
             <i class="fa fa-paperclip" aria-hidden="true"></i>
             <input name="image" type="file" ngf-select class="hide" ng-model="image" ngf-multiple="false" ng-file-select="onFileSelect($files, $invalidFiles)"
-                ngf-pattern="'.png,.jpeg'" accept=".png,.jpeg" />
+                ngf-pattern="'.png,.jpeg'" accept=".png,.jpeg" ng-change="updateField('image')"/>
         </label>
+        <label ng-if="imageError" class="asterisk"><span translate="select_image"></span></label>
         <br>
         <span style="color:red">
             <span translate="Supported_format_image"></span>
@@ -49,14 +48,15 @@
         <label for="exampleInputEmail1">
             <span translate="Parent_Category"></span>
         </label>
-        <select name="parent-cat" class="form-control" ng-model="formData.parentId" required>
+        <select name="parent-cat" class="form-control" ng-model="formData.parentId" ng-change="updateField('parent_category')" required>
             <option value="{{null}}">
                 <span translate="Select_Category"></span>
             </option>
             <option value="{{cat.id}}" ng-repeat="cat in allCategories">{{cat.title}}</option>
         </select>
+        <label ng-if="catError" class="asterisk"><span translate="choose_parent_category"></span></label>
     </div>
-    <button type="submit" ng-click="saveCategory()" ng-disabled="imageForm.$invalid || !ImageSrc" class="btn btn-primary">
+    <button type="submit" ng-click="saveCategory()" class="btn btn-primary">
         <span translate="Submit"></span>
     </button>
     <button type="submit" ui-sref="admin.category" class="btn btn-primary">

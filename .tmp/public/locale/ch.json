@@ -26,7 +26,7 @@
     "Agreement": "协议",
     "Platform_Agreement": "平台协议",
     "Browse_File": "浏览文件",
-    "Supported_format": "支持的格式：doc，docx，txt，pdf",
+    "Supported_format": "支持的格式： txt",
     "Required": "需要",
     "File_too_large": "文件过大",
     "Save_Platform_Agreement": "保存平台协议",
@@ -93,5 +93,10 @@
     "Add_New_Admin":"添加新的管理员",
     "Edit_News_Feed":"编辑新闻饲料",
     "Add_News_Feed":"添加新闻饲料",
-    "CTO_Admin":"CTO管理员"
+    "CTO_Admin":"CTO管理员",
+    "enter_name": "请输入名称",
+    "enter_phone": "请输入电话号码",
+    "enter_email":"请输入有效的电邮",
+    "enter_password":"请输入密码",
+    "choose_parent_category":"请选择父类别"
 }

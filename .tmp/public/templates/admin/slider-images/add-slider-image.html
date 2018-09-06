@@ -4,31 +4,27 @@
     
     <div class="form-group">
       <label for="exampleInputEmail1"><span translate="Title"></span></label>
-      <input name="title" type="select" class="form-control" placeholder="title" ng-model="title" required>
-      <span class="text-danger" ng-show="(formData.title.$error.required && formData.title.$dirty)">
-        <span translate="Required"></span> *</span>
+      <input name="title" type="select" class="form-control" placeholder="title" ng-model="title" ng-change="updateField('title')" required>
+        <label ng-if="titleError" class="asterisk"><span translate="enter_title"></span></label>
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1"><span translate="Title"></span>(ch)</label>
-      <input name="title_ch" type="select" class="form-control" placeholder="title" ng-model="title_ch" required>
-      <span class="text-danger" ng-show="(formData.title_ch.$error.required && formData.title_ch.$dirty)">
-        <span translate="Required"></span> *</span>
+      <input name="title_ch" type="select" class="form-control" placeholder="title" ng-model="title_ch" ng-change="updateField('title_ch')" required>
+        <label ng-if="titleChError" class="asterisk"><span translate="enter_title"></span></label>
     </div>
     
     
     <div class="form-group">
       <label for="exampleInputPassword1"><span translate="Description"></span></label>
       <!-- <input name="description" type="text" class="form-control" placeholder="Description" ng-model="description"> -->
-      <textarea name="description" type="text" class="form-control" placeholder="Description" ng-model="description" rows="5" required>{{description}}</textarea>
-      <span class="text-danger" ng-show="(formData.description.$error.required && formData.description.$dirty)">
-        <span translate="Required"></span> *</span>
+      <textarea name="description" type="text" class="form-control" placeholder="Description" ng-model="description" rows="5" ng-change="updateField('description')" required>{{description}}</textarea>
+        <label ng-if="descError" class="asterisk"><span translate="enter_description"></span></label>
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1"><span translate="Description"></span>(ch)</label>
       <!-- <input name="description" type="text" class="form-control" placeholder="Description" ng-model="description"> -->
-      <textarea name="description_ch" type="text" class="form-control" placeholder="Description" ng-model="description_ch" rows="5" required>{{description}}</textarea>
-      <span class="text-danger" ng-show="(formData.description_ch.$error.required && formData.description_ch.$dirty)">
-        <span translate="Required"></span> *</span>
+      <textarea name="description_ch" type="text" class="form-control" placeholder="Description" ng-model="description_ch" rows="5" ng-change="updateField('description_ch')" required>{{description}}</textarea>
+        <label ng-if="descChError" class="asterisk"><span translate="enter_description"></span></label>
     </div>
 
 
@@ -37,16 +33,15 @@
       <label class="btn btn-default clearfix">
         <span translate="Browse"></span>
         <input type="file" name="file" accept="image/*" class="hide" ngf-select ng-model="files" ngf-multiple="false" required ngf-pattern="'.png,.jpeg'"
-          accept=".png,.jpeg" />
+          accept=".png,.jpeg" ng-change="updateField('image')" />
       </label>
-      <span class="text-danger" ng-show="(formData.file.$error.required && formData.file.$dirty)">
-        <span translate="Required"></span> *</span>
+        <label ng-if="imageError" class="asterisk"><span translate="select_image"></span></label>
       <br>
       <span style="color:red"><span translate="Supported_format_image"></span></span>
     </div>
     <div ng-show="errorMessage" class="alert alert-warning">{{errorMessage}}</div>
     <div class="form-group">
-      <button type="submit" ng-disabled="formData.$invalid" class="btn btn-primary"><span translate="Save"></span></button>
+      <button type="submit" class="btn btn-primary"><span translate="Save"></span></button>
     </div>
   </form>
 </div>

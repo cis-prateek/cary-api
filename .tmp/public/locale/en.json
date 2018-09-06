@@ -26,7 +26,7 @@
     "Agreement":"Agreement",
     "Platform_Agreement":"Platform Agreement",
     "Browse_File":"Browse File",
-    "Supported_format":"Supported format : doc, docx, txt, pdf",
+    "Supported_format":"Supported format : txt",
     "Required":"Required",
     "File_too_large":"File too large",
     "Save_Platform_Agreement":"Save Platform Agreement",
@@ -92,6 +92,10 @@
     "Edit_Admin":"Edit Admin",
     "Add_New_Admin":"Add New Admin",
     "Edit_News_Feed":"Edit News Feed",
-    "Add_News_Feed":"Add News Feed"
-
+    "Add_News_Feed":"Add News Feed",
+    "enter_name": "Please enter name",
+    "enter_phone": "Please eneter phone number",
+    "enter_email":"Please enter valid email",
+    "enter_password":"Please enter password",
+    "choose_parent_category":"Please select parent category"
 }
